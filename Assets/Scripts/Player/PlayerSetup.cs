@@ -9,7 +9,7 @@ public class PlayerSetup : MonoBehaviour
 
     public void IsLocalPlayer()
     {
-        playerMovement.enabled = true;
+       playerMovement.enabled = true;
         camera.SetActive(true);    
     }
 }

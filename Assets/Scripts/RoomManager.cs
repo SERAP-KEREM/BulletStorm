@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
@@ -8,8 +8,6 @@ public class RoomManager : MonoBehaviourPunCallbacks
     public GameObject player;
     [Space]
     public Transform spawnPoint;
-
-
 
     private void Start()
     {
@@ -27,19 +25,14 @@ public class RoomManager : MonoBehaviourPunCallbacks
         PhotonNetwork.JoinLobby();
     }
 
-  
     public override void OnJoinedLobby()
     {
         base.OnJoinedLobby();
 
         Debug.Log("We are in the lobby");
 
-        PhotonNetwork.JoinOrCreateRoom("test",null,null);
-
-  
-
+        PhotonNetwork.JoinOrCreateRoom("test", null, null);
     }
-
 
     public override void OnJoinedRoom()
     {
@@ -51,5 +44,4 @@ public class RoomManager : MonoBehaviourPunCallbacks
         _player.GetComponent<PlayerSetup>().IsLocalPlayer();
 
     }
-
 }

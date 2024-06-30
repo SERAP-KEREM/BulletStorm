@@ -1,49 +1,9 @@
 fileFormatVersion: 2
-guid: 8eff6adacbd71ae469436cf8694ec9c5
+guid: 4c35e56826b6f464cb4ee97e32c888ce
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Soldier_body1
-    second: {fileID: 2100000, guid: 39e16368c2957e244b2f5a6f6da5f4a3, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Soldier_head6
-    second: {fileID: 2100000, guid: 7aab8a20ff524da45a8e416f311b7831, type: 2}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Soldier_Body_diffuse
-    second: {fileID: 2800000, guid: f5a43623391b64e4fae14103aec5dc60, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Soldier_Body_normal
-    second: {fileID: 2800000, guid: 753aa2209bc545143bc29ece0e932b6f, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Soldier_Body_specular
-    second: {fileID: 2800000, guid: f2cb74aaf2257fe469d0a965a89a3f3b, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Soldier_head_diffuse
-    second: {fileID: 2800000, guid: f232728bf78ca954385646d4364c94c1, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Soldier_head_normal
-    second: {fileID: 2800000, guid: b8118f9a39e6ec842b61e4c583b9392f, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Soldier_head_specular
-    second: {fileID: 2800000, guid: c7a691ef74c031946ac0f3eea9f12a94, type: 3}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
