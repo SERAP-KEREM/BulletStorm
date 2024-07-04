@@ -1218,6 +1218,7 @@ GameObject:
   - component: {fileID: 6586030118467938377}
   - component: {fileID: 6768857650098752500}
   - component: {fileID: 1217843399076403243}
+  - component: {fileID: 1020987268035943410}
   m_Layer: 0
   m_Name: Swat
   m_TagString: Player
@@ -1400,7 +1401,22 @@ MonoBehaviour:
   walkSpeed: 2
   sprintSpeed: 5
   maxVelocityChange: 10
+  airControl: 0.5
   jumpHeight: 10
+  currentSpeed: 0
+--- !u!114 &1020987268035943410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4580438414066808656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18a6118348fe13b418d88a5a7a90c10e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
 --- !u!1 &5016482002799492734
 GameObject:
   m_ObjectHideFlags: 0

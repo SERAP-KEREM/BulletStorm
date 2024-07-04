@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Photon.Pun;
 public class PlayerMovement : MonoBehaviour
 {
     public float walkSpeed = 2f;
@@ -19,10 +19,12 @@ public class PlayerMovement : MonoBehaviour
 
     private Animator playerAnim;
 
+   
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         playerAnim = GetComponent<Animator>();
+        GameObject weaponObject = GameObject.FindGameObjectWithTag("Weapon");
     }
 
     private void Update()
@@ -35,24 +37,22 @@ public class PlayerMovement : MonoBehaviour
 
         // Speed parametresini ayarla
          currentSpeed = rb.velocity.magnitude;
-        playerAnim.SetFloat("Speed", currentSpeed);
+      //  playerAnim.SetFloat("Speed", currentSpeed);
 
         // Jump tetikleyici
         if (jumping && grounded)
         {
-            playerAnim.SetBool("isJump",true);
+        //    playerAnim.SetBool("isJump",true);
         }
 
-        // Diğer animasyon tetikleyicileri
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            playerAnim.SetTrigger("isShooting");
-        }
+     
 
         if (Input.GetKeyDown(KeyCode.K)) // Ölüm animasyonu için bir tetikleyici, oyun mekaniklerine göre değiştirin
         {
-            playerAnim.SetBool("isDie", true);
+           // playerAnim.SetBool("isDie", true);
         }
+
+
     }
 
     private void OnTriggerStay(Collider other)

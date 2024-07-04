@@ -1,18 +1,31 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+   public int health;
+    public bool isLocalPlayer;
 
-    // Update is called once per frame
-    void Update()
+    [Header("UI")]
+    public TextMeshProUGUI healthText;
+
+    [PunRPC]    
+    public void TakeDamage(int _damage)
     {
-        
+        health-=_damage;
+        healthText.text = health.ToString();
+
+        if(health <= 0)
+        {
+            if(isLocalPlayer)
+            {
+                RoomManager.instance.SpawnPlayer();
+            }
+
+            Destroy(gameObject);    
+        }
     }
 }
