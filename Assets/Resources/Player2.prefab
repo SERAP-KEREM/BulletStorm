@@ -1316,10 +1316,9 @@ MonoBehaviour:
   fireRate: 10
   camera: {fileID: 1587525529426286947}
   hitVFX: {fileID: 2708598583397607911, guid: 6398d43fe79ea0140913dc5530c646af, type: 3}
-  mag: 5
+  fireCount: 30
   ammo: 30
-  magAmmo: 30
-  magText: {fileID: 5962087226375306704}
+  magAmmo: 150
   ammoText: {fileID: 4974670170022510011}
   weaponAnim: {fileID: 5570820931003761488}
   reload: {fileID: 7400000, guid: 7bad44257cb236346a26550db1001a61, type: 2}
@@ -2949,7 +2948,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2572184493100347302
 RectTransform:
   m_ObjectHideFlags: 0

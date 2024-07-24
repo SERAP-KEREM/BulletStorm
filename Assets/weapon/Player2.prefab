@@ -1122,7 +1122,7 @@ MonoBehaviour:
   hitVFX: {fileID: 2708598583397607911, guid: 6398d43fe79ea0140913dc5530c646af, type: 3}
   mag: 5
   ammo: 30
-  magAmmo: 30
+  magAmmo: 150
   magText: {fileID: 5591856085531208010}
   ammoText: {fileID: 868608850444424085}
   weaponAnim: {fileID: 1781206714147108532}

@@ -17,13 +17,13 @@ public class Weapon : MonoBehaviour
     public GameObject hitVFX;
 
     [Header("Ammo")]
-    public int mag = 5;
+    public int fireCount = 30;
 
     public int ammo = 30;
-    public int magAmmo = 30;
+    public int magAmmo = 150;
 
     [Header("UI")]
-    public TextMeshProUGUI magText;
+   // public TextMeshProUGUI magText;
     public TextMeshProUGUI ammoText;
 
     [Header("Animation")]
@@ -33,7 +33,7 @@ public class Weapon : MonoBehaviour
 
     private void Start()
     {
-        magText.text = mag.ToString();
+      //  magText.text = mag.ToString();
         ammoText.text = ammo + "/" + magAmmo.ToString();
     }
 
@@ -50,7 +50,7 @@ public class Weapon : MonoBehaviour
             nextFire = 1 / fireRate;
             ammo--;
 
-            magText.text = mag.ToString();
+           // magText.text = mag.ToString();
             ammoText.text = ammo + "/" + magAmmo.ToString();
 
 
@@ -62,19 +62,26 @@ public class Weapon : MonoBehaviour
            
             
         }
+        if (magAmmo == 0 && ammo==0)
+        {
+            ammoText.color = Color.red;
+        }
 
- 
+
     }
     void Reload()
     {
         weaponAnim.Play(reload.name);
-        if(mag>0)
+        if(magAmmo>0)
         {
-            mag--;
-            ammo=magAmmo;
+            magAmmo -= fireCount-ammo;
+            ammo = fireCount;
+           
+            
         }
+       
 
-        magText.text=mag.ToString();
+        //magText.text=mag.ToString();
         ammoText.text=ammo+"/"+magAmmo.ToString();
     }
     void Fire()
