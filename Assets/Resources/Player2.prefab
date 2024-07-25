@@ -1322,6 +1322,10 @@ MonoBehaviour:
   ammoText: {fileID: 4974670170022510011}
   weaponAnim: {fileID: 5570820931003761488}
   reload: {fileID: 7400000, guid: 7bad44257cb236346a26550db1001a61, type: 2}
+  recoverPercent: 0.7
+  recoilUp: 0.02
+  recoilBack: 0.05
+  recovering: 0
 --- !u!120 &406024374959609188
 LineRenderer:
   serializedVersion: 2
