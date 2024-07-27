@@ -1,6 +1,7 @@
 using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PlayerSetup : MonoBehaviour
@@ -9,6 +10,8 @@ public class PlayerSetup : MonoBehaviour
     public GameObject camera;
 
     public string nickName;
+
+    public TextMeshPro nickNameText;
 
     
 
@@ -21,5 +24,7 @@ public class PlayerSetup : MonoBehaviour
     [PunRPC]    
     public void SetNickName(string _name)
     { 
-       nickName = _name; }
+       nickName = _name;
+       nickNameText.text = nickName;    
+    }
 }
