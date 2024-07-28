@@ -23,8 +23,10 @@ public class Weapon : MonoBehaviour
     public TextMeshProUGUI ammoText;
 
     [Header("Animation")]
-    public Animation weaponAnim;
-    public AnimationClip reload;
+    //public Animation weaponAnim;
+    //public AnimationClip reload;
+
+    public Animator weaponAnimator;
 
     [Header("Recoil Settings")]
     [Range(0, 2)]
@@ -55,7 +57,7 @@ public class Weapon : MonoBehaviour
             nextFire -= Time.deltaTime;
         }
 
-        if (Input.GetButton("Fire1") && nextFire <= 0 && ammo > 0 && weaponAnim.isPlaying == false)
+        if (Input.GetButton("Fire1") && nextFire <= 0 && ammo > 0 /*&& weaponAnim.isPlaying == false*/)
         {
             Debug.Log("ateş");
             nextFire = 1 / fireRate;
@@ -86,7 +88,8 @@ public class Weapon : MonoBehaviour
 
     void Reload()
     {
-        weaponAnim.Play(reload.name);
+        weaponAnimator.SetBool("reload", true);
+       // weaponAnim.Play(reload.name);
         if (magAmmo > 0)
         {
             magAmmo -= fireCount - ammo;
