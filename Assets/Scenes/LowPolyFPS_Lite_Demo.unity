@@ -8677,8 +8677,7 @@ MonoBehaviour:
   ammo: 30
   magAmmo: 30
   ammoText: {fileID: 2738836221121434726}
-  weaponAnim: {fileID: 4161827590923618092}
-  reload: {fileID: 0}
+  weaponAnimator: {fileID: 0}
   recoverPercent: 0.7
   recoilUp: 1
   recoilBack: 0
