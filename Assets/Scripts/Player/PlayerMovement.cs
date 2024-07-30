@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+
 public class PlayerMovement : MonoBehaviour
 {
     public float walkSpeed = 2f;
@@ -18,83 +19,98 @@ public class PlayerMovement : MonoBehaviour
     private bool grounded = false;
 
     private Animator playerAnim;
+    private PhotonView photonView;
+    private Camera playerCamera;
 
-   
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         playerAnim = GetComponent<Animator>();
-        GameObject weaponObject = GameObject.FindGameObjectWithTag("Weapon");
+        photonView = GetComponent<PhotonView>(); // PhotonView bileşenini al
+        playerCamera = GetComponentInChildren<Camera>(); // Oyuncu kamerasını bul
+
+        if (!photonView.IsMine)
+        {
+            // Eğer bu karakter yerel oyuncuya ait değilse, kamerayı ve diğer kontrolleri devre dışı bırak
+            playerCamera.gameObject.SetActive(false);
+            this.enabled = false;
+        }
     }
 
     private void Update()
     {
-        input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        input.Normalize();
-
-        sprinting = Input.GetButton("Sprint");
-        jumping = Input.GetButton("Jump");
-
-        // Speed parametresini ayarla
-         currentSpeed = rb.velocity.magnitude;
-      //  playerAnim.SetFloat("Speed", currentSpeed);
-
-        // Jump tetikleyici
-        if (jumping && grounded)
+        // Sadece PhotonView'in sahibi olan oyuncu input kontrollerini kullanabilir
+        if (photonView.IsMine)
         {
-        //    playerAnim.SetBool("isJump",true);
+            input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+            input.Normalize();
+
+            sprinting = Input.GetButton("Sprint");
+            jumping = Input.GetButton("Jump");
+
+            // Speed parametresini ayarla
+            currentSpeed = rb.velocity.magnitude;
+            // playerAnim.SetFloat("Speed", currentSpeed);
+
+            // Jump tetikleyici
+            if (jumping && grounded)
+            {
+                // playerAnim.SetBool("isJump", true);
+            }
+
+            if (Input.GetKeyDown(KeyCode.K)) // Ölüm animasyonu için bir tetikleyici, oyun mekaniklerine göre değiştirin
+            {
+                // playerAnim.SetBool("isDie", true);
+            }
         }
-
-     
-
-        if (Input.GetKeyDown(KeyCode.K)) // Ölüm animasyonu için bir tetikleyici, oyun mekaniklerine göre değiştirin
-        {
-           // playerAnim.SetBool("isDie", true);
-        }
-
-
     }
 
     private void OnTriggerStay(Collider other)
     {
-        grounded = true;
-        Debug.Log("Yerde");
+        if (photonView.IsMine)
+        {
+            grounded = true;
+            Debug.Log("Yerde");
+        }
     }
 
     private void FixedUpdate()
     {
-        if (grounded)
+        if (photonView.IsMine)
         {
-            if (jumping)
+            if (grounded)
             {
-                rb.velocity = new Vector3(rb.velocity.x, jumpHeight / 2, rb.velocity.z);
-            }
-            else if (input.magnitude > 0.5f)
-            {
-                rb.AddForce(CalculateMovement(sprinting ? sprintSpeed : walkSpeed), ForceMode.VelocityChange);
+                if (jumping)
+                {
+                    rb.velocity = new Vector3(rb.velocity.x, jumpHeight / 2, rb.velocity.z);
+                }
+                else if (input.magnitude > 0.5f)
+                {
+                    rb.AddForce(CalculateMovement(sprinting ? sprintSpeed : walkSpeed), ForceMode.VelocityChange);
+                }
+                else
+                {
+                    var velocity1 = rb.velocity;
+                    velocity1 = new Vector3(velocity1.x * 0.2f * Time.fixedDeltaTime, velocity1.y, velocity1.z * 0.2f * Time.fixedDeltaTime);
+                    rb.velocity = velocity1;
+                }
             }
             else
             {
-                var velocity1 = rb.velocity;
-                velocity1 = new Vector3(velocity1.x * 0.2f * Time.fixedDeltaTime, velocity1.y, velocity1.z * 0.2f * Time.fixedDeltaTime);
-                rb.velocity = velocity1;
+                if (input.magnitude > 0.5f)
+                {
+                    rb.AddForce(CalculateMovement(sprinting ? sprintSpeed * airControl : walkSpeed * airControl), ForceMode.VelocityChange);
+                }
+                else
+                {
+                    var velocity1 = rb.velocity;
+                    velocity1 = new Vector3(velocity1.x * 0.2f * Time.fixedDeltaTime, velocity1.y, velocity1.z * 0.2f * Time.fixedDeltaTime);
+                    rb.velocity = velocity1;
+                }
             }
-        }
-        else
-        {
-            if (input.magnitude > 0.5f)
-            {
-                rb.AddForce(CalculateMovement(sprinting ? sprintSpeed * airControl : walkSpeed * airControl), ForceMode.VelocityChange);
-            }
-            else
-            {
-                var velocity1 = rb.velocity;
-                velocity1 = new Vector3(velocity1.x * 0.2f * Time.fixedDeltaTime, velocity1.y, velocity1.z * 0.2f * Time.fixedDeltaTime);
-                rb.velocity = velocity1;
-            }
-        }
 
-        grounded = false;
+            grounded = false;
+        }
     }
 
     Vector3 CalculateMovement(float _speed)

@@ -7015,7 +7015,7 @@ MonoBehaviour:
   damage: 15
   fireRate: 4
   camera: {fileID: 1587525529426286947}
-  hitVFX: {fileID: 8028495988703897974, guid: 3f8fc298ad9509b4eacedafb0e7011bd, type: 3}
+  hitVFX: {fileID: 6150473835677423902, guid: 0ec7ea9534f681d4a9682ce542b89786, type: 3}
   fireCount: 12
   ammo: 12
   magAmmo: 90
@@ -8246,6 +8246,8 @@ GameObject:
   - component: {fileID: 8931253390796029705}
   - component: {fileID: 5891683463491965624}
   - component: {fileID: 7502691741345930846}
+  - component: {fileID: 7031524394402332647}
+  - component: {fileID: 1707381917939243672}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -8339,6 +8341,40 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &7031524394402332647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6163585619640313337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &1707381917939243672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6163585619640313337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 752ec8fe93388524ea000343bef2a08c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6177535944927324911
 GameObject:
   m_ObjectHideFlags: 0
@@ -8915,7 +8951,7 @@ MonoBehaviour:
   damage: 20
   fireRate: 6
   camera: {fileID: 1587525529426286947}
-  hitVFX: {fileID: 5970477274139668279, guid: 39c543c480d12224099f91c4aa288c40, type: 3}
+  hitVFX: {fileID: 7548402152492413694, guid: 0558f41b27540ad4081636bfdb773e61, type: 3}
   fireCount: 25
   ammo: 25
   magAmmo: 160
@@ -10709,7 +10745,7 @@ MonoBehaviour:
   damage: 20
   fireRate: 7
   camera: {fileID: 1587525529426286947}
-  hitVFX: {fileID: 6649201105394435871, guid: 1da51921da63dfa4181145ac86ccf577, type: 3}
+  hitVFX: {fileID: 1723660883481114378, guid: 2303d70a79f02b2498dd96e7df76b421, type: 3}
   fireCount: 30
   ammo: 30
   magAmmo: 150

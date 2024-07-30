@@ -1,4 +1,5 @@
 ﻿using Photon.Pun;
+using Photon.Pun.UtilityScripts;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -23,8 +24,6 @@ public class Weapon : MonoBehaviour
     public TextMeshProUGUI ammoText;
 
     [Header("Animation")]
-    //public Animation weaponAnim;
-    //public AnimationClip reload;
 
     public Animator weaponAnimator;
 
@@ -64,6 +63,7 @@ public class Weapon : MonoBehaviour
             ammo--;
             ammoText.text = ammo + "/" + magAmmo.ToString();
             Fire();
+         
         }
         if (Input.GetKeyDown(KeyCode.R) && magAmmo > 0)
         {
@@ -106,14 +106,24 @@ public class Weapon : MonoBehaviour
         Ray ray = new Ray(camera.transform.position, camera.transform.forward);
         RaycastHit hit;
 
+        PhotonNetwork.LocalPlayer.AddScore(1);
+
         if (Physics.Raycast(ray.origin, ray.direction, out hit, 100f))
         {
             PhotonNetwork.Instantiate(hitVFX.name, hit.point, Quaternion.identity);
             if (hit.transform.gameObject.GetComponent<PlayerHealth>())
             {
+
+                PhotonNetwork.LocalPlayer.AddScore(damage);
+                if (damage>hit.transform.gameObject.GetComponent<PlayerHealth>().health)
+                {
+                    //kill
+                    PhotonNetwork.LocalPlayer.AddScore(100);
+                }
                 hit.transform.gameObject.GetComponent<PhotonView>().RPC("TakeDamage", RpcTarget.All, damage);
             }
         }
+        
     }
 
     void DrawContinuousRaycast()

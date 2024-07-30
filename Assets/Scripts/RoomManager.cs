@@ -5,12 +5,9 @@ using Photon.Pun;
 
 public class RoomManager : MonoBehaviourPunCallbacks
 {
-
     public static RoomManager instance;
 
     public GameObject player;
-
-
 
     [Space]
     public Transform[] spawnPoints;
@@ -33,7 +30,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
     {
         nickName = _name;
     }
-    
+
     public void JoinRoomButtonPressed()
     {
         Debug.Log("Connecting...");
@@ -43,12 +40,11 @@ public class RoomManager : MonoBehaviourPunCallbacks
         connectingUI.SetActive(true);
     }
 
-
     private void Start()
     {
         Debug.Log("Connecting...");
 
-       // PhotonNetwork.ConnectUsingSettings();
+        // PhotonNetwork.ConnectUsingSettings();
     }
 
     public override void OnConnectedToMaster()
@@ -75,20 +71,19 @@ public class RoomManager : MonoBehaviourPunCallbacks
 
         Debug.Log("We are connected and in a room now");
 
-        roomCamera.SetActive(false);    
+        roomCamera.SetActive(false);
 
         SpawnPlayer();
-
-
     }
 
     public void SpawnPlayer()
     {
-        Transform spawnPoint = spawnPoints[UnityEngine.Random.Range(0,spawnPoints.Length)];
+        Transform spawnPoint = spawnPoints[UnityEngine.Random.Range(0, spawnPoints.Length)];
         GameObject _player = PhotonNetwork.Instantiate(player.name, spawnPoint.position, Quaternion.identity);
         _player.GetComponent<PlayerSetup>().IsLocalPlayer();
         _player.GetComponent<PlayerHealth>().isLocalPlayer = true;
 
-        _player.GetComponent<PhotonView>().RPC("SetNickName", RpcTarget.AllBuffered,nickName);
+        _player.GetComponent<PhotonView>().RPC("SetNickName", RpcTarget.AllBuffered, nickName);
+        PhotonNetwork.LocalPlayer.NickName = nickName;
     }
 }
