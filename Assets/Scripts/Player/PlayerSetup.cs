@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+
 public class PlayerSetup : MonoBehaviour
 {
     public PlayerMovement playerMovement;
@@ -27,4 +28,6 @@ public class PlayerSetup : MonoBehaviour
        nickName = _name;
        nickNameText.text = nickName;    
     }
+
+  
 }

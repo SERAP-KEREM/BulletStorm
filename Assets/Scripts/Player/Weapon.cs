@@ -115,9 +115,12 @@ public class Weapon : MonoBehaviour
             {
 
                 PhotonNetwork.LocalPlayer.AddScore(damage);
-                if (damage>hit.transform.gameObject.GetComponent<PlayerHealth>().health)
+                if (damage>=hit.transform.gameObject.GetComponent<PlayerHealth>().health)
                 {
                     //kill
+
+                    RoomManager.instance.kills++;
+                    RoomManager.instance.SetHashes();
                     PhotonNetwork.LocalPlayer.AddScore(100);
                 }
                 hit.transform.gameObject.GetComponent<PhotonView>().RPC("TakeDamage", RpcTarget.All, damage);
