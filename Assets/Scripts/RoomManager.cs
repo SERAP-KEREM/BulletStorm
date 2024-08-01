@@ -29,6 +29,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
     [HideInInspector]
     public int deaths=0;
 
+  
     private void Awake()
     {
         instance = this;
@@ -42,7 +43,8 @@ public class RoomManager : MonoBehaviourPunCallbacks
     public void JoinRoomButtonPressed()
     {
         Debug.Log("Connecting...");
-        PhotonNetwork.ConnectUsingSettings();
+       // PhotonNetwork.ConnectUsingSettings();
+       PhotonNetwork.JoinOrCreateRoom(roomNameToJoin,null,null);
 
         nameUI.SetActive(false);
         connectingUI.SetActive(true);
@@ -55,6 +57,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
         // PhotonNetwork.ConnectUsingSettings();
     }
 
+    /*
     public override void OnConnectedToMaster()
     {
         base.OnConnectedToMaster();
@@ -70,9 +73,9 @@ public class RoomManager : MonoBehaviourPunCallbacks
 
         Debug.Log("We are in the lobby");
 
-        PhotonNetwork.JoinOrCreateRoom("test", null, null);
+        PhotonNetwork.JoinOrCreateRoom(roomNameToJoin, null, null);
     }
-
+    */
     public override void OnJoinedRoom()
     {
         base.OnJoinedRoom();
